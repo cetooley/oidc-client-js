@@ -53,6 +53,7 @@ export class SigninRequest {
         }
         if (code) {
             url = UrlUtility.addQueryParam(url, "code_challenge", this.state.code_challenge);
+            url = UrlUtility.addQueryParam(url, "node", this.state.code_challenge);
             url = UrlUtility.addQueryParam(url, "code_challenge_method", "S256");
         }
 
@@ -83,7 +84,7 @@ export class SigninRequest {
         });
         return !!(result[0]);
     }
-    
+
     static isCode(response_type) {
         var result = response_type.split(/\s+/g).filter(function(item) {
             return item === "code";
